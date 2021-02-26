@@ -1,0 +1,83 @@
+using System;
+
+namespace InvestmentPlatformComparison
+{
+    class Program
+    {
+        private decimal interbankRate = 0.73m; // 1NZD = __USD
+
+        enum Platform
+        {
+            Sharesies,
+            Hatch,
+            Stake
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Investment Platform Comparison\n");
+            Program p = new Program();
+
+            p.Setup();
+            while (true)
+            {
+                // TODO: add selection for calculating different things?
+                p.DisplayToUSDExchangeRates();
+            }
+        }
+
+        public void Setup()
+        {
+            Console.WriteLine("Enter interbank exchange rate:");
+            Console.Write("NZD$1 = USD$");
+            interbankRate = Convert.ToDecimal(Console.ReadLine());
+        }
+
+        public void DisplayToUSDExchangeRates()
+        {
+            // Make this method MVC
+            Console.WriteLine("\n---------------------------------------------\n");
+            Console.WriteLine("Enter dollar amount (NZD):");
+            Console.Write("$");
+            var investmentAmount = Convert.ToDecimal(Console.ReadLine());
+
+            Console.WriteLine($"At exchange rate 1NZD = {interbankRate}USD, you will receive:");
+            Console.WriteLine($"(Interbank rate: {interbankRate * investmentAmount:c} USD)");
+            Console.WriteLine($"Sharesies: {ExchangeToUSD(0.004m, investmentAmount):c} USD");
+            Console.WriteLine($"Hatch: {ExchangeToUSD(0.005m, investmentAmount):c} USD");
+            Console.WriteLine($"Stake: {ExchangeToUSD(0.01m, investmentAmount):c} USD");            
+        }
+
+        public decimal ExchangeToUSD(decimal platformExchangeRate, decimal investmentAmount)
+        {
+            // TODO: check if interbank calculation is correct
+            return investmentAmount * (interbankRate - (interbankRate * platformExchangeRate));
+        }
+
+        public decimal ExchangeFromUSD(decimal platformExchangeRate, decimal investmentAmount)
+        {
+            // TODO: implement
+            return 0;
+        }
+
+        public decimal GetSharesiesUSD(decimal investmentAmount)
+        {
+            return ExchangeToUSD(0.004m, investmentAmount);
+        }
+
+        public decimal GetHatchUSD(decimal investmentAmount)
+        {
+            return ExchangeToUSD(0.005m, investmentAmount);
+        }
+
+        public decimal GetStakeUSD(decimal investmentAmount)
+        {
+            return ExchangeToUSD(0.01m, investmentAmount);
+        }
+
+        public decimal CalculateSharesiesPlatformFee(int months)
+        {
+            return 0;
+        }
+    }
+}

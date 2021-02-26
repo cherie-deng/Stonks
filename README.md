@@ -1,1 +1,3 @@
 # Stonks
+
+## Investment Platform Comparison
