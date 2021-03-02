@@ -51,7 +51,7 @@ namespace LightweightPlatformComparator.Investments
         public void PrintResult()
         {
             // TODO: need System. ? remove if not
-            System.Console.WriteLine($"\n{_platformName}:");
+            System.Console.WriteLine($"{_platformName}:");
             System.Console.WriteLine($"Total money invested: {_totalInputNZD:c}NZD");
             // System.Console.WriteLine($"Investment value: {_investmentValueUSD:c}USD");
             System.Console.WriteLine($"Wallet value: {_walletValueNZD:c}NZD");

@@ -12,8 +12,10 @@ namespace LightweightPlatformComparator
             System.Console.Write("$");
             var regularInvestmentAmount = Convert.ToDecimal(Console.ReadLine());
 
-            var investmentTimeMonths = 120; //Convert.ToInt32(Console.ReadLine());
-            var investmentFrequencyMonths = 2;//Convert.ToInt32(Console.ReadLine());
+            System.Console.WriteLine("Enter investment period (months):");
+            var investmentTimeMonths = Convert.ToInt32(Console.ReadLine());
+            System.Console.WriteLine("Enter investment frequency (months):");
+            var investmentFrequencyMonths = Convert.ToInt32(Console.ReadLine());
 
             SharesiesInvestment sharesies = new SharesiesInvestment();
             HatchInvestment hatch = new HatchInvestment();
@@ -24,9 +26,12 @@ namespace LightweightPlatformComparator
             investments.Add(hatch);
             investments.Add(stake);
 
+            System.Console.WriteLine($"\n{regularInvestmentAmount:c}NZD, every {investmentFrequencyMonths} months, for {investmentTimeMonths} months ({investmentTimeMonths/12} years):");
+
             foreach (Investment inv in investments)
             {
                 inv.Simulate(investmentTimeMonths, investmentFrequencyMonths, regularInvestmentAmount);
+                System.Console.WriteLine();
             }
         }
     }
